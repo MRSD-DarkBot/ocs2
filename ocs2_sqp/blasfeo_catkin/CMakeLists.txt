@@ -20,7 +20,7 @@ file(MAKE_DIRECTORY ${BLASFEO_BUILD_DIR})
 
 # BLASFEO Settings
 set(BUILD_SHARED_LIBS ON CACHE STRING "Build shared libraries" FORCE)
-set(TARGET ARMV8_ARM_CORTEX_A53 CACHE STRING "Target architecture" FORCE)
+set(TARGET ARMV8A_ARM_CORTEX_A53 CACHE STRING "Target architecture" FORCE)
 set(BLASFEO_EXAMPLES OFF CACHE BOOL "Examples enabled")
 
 # Download & build source
