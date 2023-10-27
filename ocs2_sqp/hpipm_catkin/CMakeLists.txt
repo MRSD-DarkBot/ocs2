@@ -40,8 +40,8 @@ FetchContent_Declare(hpipmDownload
   UPDATE_COMMAND ""
   SOURCE_DIR ${HPIPM_DOWNLOAD_DIR}
   BINARY_DIR ${HPIPM_BUILD_DIR}
-  BUILD_COMMAND $(MAKE)
-  INSTALL_COMMAND "$(MAKE) install"
+	BUILD_COMMAND $(MAKE) shared_library -j 4
+	INSTALL_COMMAND "$(MAKE) install_shared"
   )
 FetchContent_MakeAvailable(hpipmDownload)
 
