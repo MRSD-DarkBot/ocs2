@@ -29,8 +29,8 @@ FetchContent_Declare(blasfeoDownload
 	UPDATE_COMMAND ""
 	SOURCE_DIR ${BLASFEO_DOWNLOAD_DIR}
 	BINARY_DIR ${BLASFEO_BUILD_DIR}
-	BUILD_COMMAND $(MAKE) shared_library -j 4
-	INSTALL_COMMAND "$(MAKE) install_shared"
+	BUILD_COMMAND $(MAKE)
+	INSTALL_COMMAND "$(MAKE) install"
 )
 FetchContent_MakeAvailable(blasfeoDownload)
 
