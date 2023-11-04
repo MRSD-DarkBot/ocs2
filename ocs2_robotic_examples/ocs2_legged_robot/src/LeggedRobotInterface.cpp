@@ -95,17 +95,17 @@ LeggedRobotInterface::LeggedRobotInterface(const std::string& taskFile, const st
   // load setting from loading file
   modelSettings_ = loadModelSettings(taskFile, "model_settings", verbose);
   mpcSettings_ = mpc::loadSettings(taskFile, "mpc", verbose);
-  ddpSettings_ = ddp::loadSettings(taskFile, "ddp", verbose);
+  // ddpSettings_ = ddp::loadSettings(taskFile, "ddp", verbose);
   sqpSettings_ = sqp::loadSettings(taskFile, "sqp", verbose);
   ipmSettings_ = ipm::loadSettings(taskFile, "ipm", verbose);
-  rolloutSettings_ = rollout::loadSettings(taskFile, "rollout", verbose);
+  // rolloutSettings_ = rollout::loadSettings(taskFile, "rollout", verbose);
 
-  // OptimalConrolProblem
-  setupOptimalConrolProblem(taskFile, urdfFile, referenceFile, verbose);
+  // // OptimalConrolProblem
+  // setupOptimalConrolProblem(taskFile, urdfFile, referenceFile, verbose);
 
-  // initial state
-  initialState_.setZero(centroidalModelInfo_.stateDim);
-  loadData::loadEigenMatrix(taskFile, "initialState", initialState_);
+  // // initial state
+  // initialState_.setZero(centroidalModelInfo_.stateDim);
+  // loadData::loadEigenMatrix(taskFile, "initialState", initialState_);
 }
 
 /******************************************************************************************************/

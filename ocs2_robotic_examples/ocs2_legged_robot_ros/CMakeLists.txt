@@ -89,65 +89,65 @@ target_link_libraries(${PROJECT_NAME}
 )
 target_compile_options(${PROJECT_NAME} PUBLIC ${OCS2_CXX_FLAGS})
 
-# DDP-MPC node for legged robot
-add_executable(legged_robot_ddp_mpc
-  src/LeggedRobotDdpMpcNode.cpp
-)
-add_dependencies(legged_robot_ddp_mpc
-  ${PROJECT_NAME}
-  ${${PROJECT_NAME}_EXPORTED_TARGETS}
-  ${catkin_EXPORTED_TARGETS}
-)
-target_link_libraries(legged_robot_ddp_mpc
-  ${PROJECT_NAME}
-  ${catkin_LIBRARIES}
-)
-target_compile_options(legged_robot_ddp_mpc PRIVATE ${OCS2_CXX_FLAGS})
+# # DDP-MPC node for legged robot
+# add_executable(legged_robot_ddp_mpc
+#   src/LeggedRobotDdpMpcNode.cpp
+# )
+# add_dependencies(legged_robot_ddp_mpc
+#   ${PROJECT_NAME}
+#   ${${PROJECT_NAME}_EXPORTED_TARGETS}
+#   ${catkin_EXPORTED_TARGETS}
+# )
+# target_link_libraries(legged_robot_ddp_mpc
+#   ${PROJECT_NAME}
+#   ${catkin_LIBRARIES}
+# )
+# target_compile_options(legged_robot_ddp_mpc PRIVATE ${OCS2_CXX_FLAGS})
 
-## SQP-MPC node for legged robot
-add_executable(legged_robot_sqp_mpc
-  src/LeggedRobotSqpMpcNode.cpp
-)
-add_dependencies(legged_robot_sqp_mpc
-  ${PROJECT_NAME}
-  ${${PROJECT_NAME}_EXPORTED_TARGETS}
-  ${catkin_EXPORTED_TARGETS}
-)
-target_link_libraries(legged_robot_sqp_mpc
-  ${PROJECT_NAME}
-  ${catkin_LIBRARIES}
-)
-target_compile_options(legged_robot_sqp_mpc  PRIVATE ${OCS2_CXX_FLAGS})
+# ## SQP-MPC node for legged robot
+# add_executable(legged_robot_sqp_mpc
+#   src/LeggedRobotSqpMpcNode.cpp
+# )
+# add_dependencies(legged_robot_sqp_mpc
+#   ${PROJECT_NAME}
+#   ${${PROJECT_NAME}_EXPORTED_TARGETS}
+#   ${catkin_EXPORTED_TARGETS}
+# )
+# target_link_libraries(legged_robot_sqp_mpc
+#   ${PROJECT_NAME}
+#   ${catkin_LIBRARIES}
+# )
+# target_compile_options(legged_robot_sqp_mpc  PRIVATE ${OCS2_CXX_FLAGS})
 
-## IPM-MPC node for legged robot
-add_executable(legged_robot_ipm_mpc
-  src/LeggedRobotIpmMpcNode.cpp
-)
-add_dependencies(legged_robot_ipm_mpc
-  ${PROJECT_NAME}
-  ${${PROJECT_NAME}_EXPORTED_TARGETS}
-  ${catkin_EXPORTED_TARGETS}
-)
-target_link_libraries(legged_robot_ipm_mpc
-  ${PROJECT_NAME}
-  ${catkin_LIBRARIES}
-)
-target_compile_options(legged_robot_ipm_mpc  PRIVATE ${OCS2_CXX_FLAGS})
+# ## IPM-MPC node for legged robot
+# add_executable(legged_robot_ipm_mpc
+#   src/LeggedRobotIpmMpcNode.cpp
+# )
+# add_dependencies(legged_robot_ipm_mpc
+#   ${PROJECT_NAME}
+#   ${${PROJECT_NAME}_EXPORTED_TARGETS}
+#   ${catkin_EXPORTED_TARGETS}
+# )
+# target_link_libraries(legged_robot_ipm_mpc
+#   ${PROJECT_NAME}
+#   ${catkin_LIBRARIES}
+# )
+# target_compile_options(legged_robot_ipm_mpc  PRIVATE ${OCS2_CXX_FLAGS})
 
 # Dummy node
-add_executable(legged_robot_dummy
-  src/LeggedRobotDummyNode.cpp
-)
-add_dependencies(legged_robot_dummy
-  ${PROJECT_NAME}
-  ${${PROJECT_NAME}_EXPORTED_TARGETS}
-  ${catkin_EXPORTED_TARGETS}
-)
-target_link_libraries(legged_robot_dummy
-  ${PROJECT_NAME}
-  ${catkin_LIBRARIES}
-)
-target_compile_options(legged_robot_dummy PRIVATE ${OCS2_CXX_FLAGS})
+# add_executable(legged_robot_dummy
+#   src/LeggedRobotDummyNode.cpp
+# )
+# add_dependencies(legged_robot_dummy
+#   ${PROJECT_NAME}
+#   ${${PROJECT_NAME}_EXPORTED_TARGETS}
+#   ${catkin_EXPORTED_TARGETS}
+# )
+# target_link_libraries(legged_robot_dummy
+#   ${PROJECT_NAME}
+#   ${catkin_LIBRARIES}
+# )
+# target_compile_options(legged_robot_dummy PRIVATE ${OCS2_CXX_FLAGS})
 
 # Keyboard command node for target trajectories
 add_executable(legged_robot_target
@@ -182,23 +182,23 @@ target_compile_options(legged_robot_gait_command PRIVATE ${OCS2_CXX_FLAGS})
 #########################
 ###   CLANG TOOLING   ###
 #########################
-find_package(cmake_clang_tools QUIET)
-if(cmake_clang_tools_FOUND)
-   message(STATUS "Run clang tooling for target ocs2_legged_robot_ros")
-   add_clang_tooling(
-     TARGETS
-       ${PROJECT_NAME}
-       legged_robot_ddp_mpc
-       legged_robot_sqp_mpc
-       legged_robot_ipm_mpc
-       legged_robot_dummy
-       legged_robot_target
-       legged_robot_gait_command
-     SOURCE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/src ${CMAKE_CURRENT_SOURCE_DIR}/include
-     CT_HEADER_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/include
-     CF_WERROR
-)
-endif(cmake_clang_tools_FOUND)
+# find_package(cmake_clang_tools QUIET)
+# if(cmake_clang_tools_FOUND)
+#    message(STATUS "Run clang tooling for target ocs2_legged_robot_ros")
+#    add_clang_tooling(
+#      TARGETS
+#        ${PROJECT_NAME}
+#        legged_robot_ddp_mpc
+#        legged_robot_sqp_mpc
+#        legged_robot_ipm_mpc
+#        legged_robot_dummy
+#        legged_robot_target
+#        legged_robot_gait_command
+#      SOURCE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/src ${CMAKE_CURRENT_SOURCE_DIR}/include
+#      CT_HEADER_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/include
+#      CF_WERROR
+# )
+# endif(cmake_clang_tools_FOUND)
 
 #############
 ## Install ##
@@ -213,12 +213,12 @@ install(TARGETS ${PROJECT_NAME}
 )
 install(
   TARGETS
-    legged_robot_ddp_mpc
-    legged_robot_sqp_mpc
-    legged_robot_ipm_mpc
-    legged_robot_dummy
+    # legged_robot_ddp_mpc
+    # legged_robot_sqp_mpc
+    # legged_robot_ipm_mpc
+    # legged_robot_dummy
     legged_robot_target
-    legged_robot_gait_command
+    # legged_robot_gait_command
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 install(DIRECTORY launch rviz

@@ -47,10 +47,11 @@ int main(int argc, char* argv[]) {
   std::cerr << "Loading gait file: " << gaitCommandFile << std::endl;
 
   GaitKeyboardPublisher gaitCommand(nodeHandle, gaitCommandFile, robotName, true);
+  // GaitKeyboardPublisher gaitCommand;
 
-  while (ros::ok() && ros::master::check()) {
-    gaitCommand.getKeyboardCommand();
-  }
+  // while (ros::ok() && ros::master::check()) {
+  //   gaitCommand.getKeyboardCommand();
+  // }
 
   // Successful exit
   return 0;

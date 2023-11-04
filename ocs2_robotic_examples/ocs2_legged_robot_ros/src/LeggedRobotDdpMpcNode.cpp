@@ -58,38 +58,38 @@ int main(int argc, char** argv) {
   // Robot interface
   LeggedRobotInterface interface(taskFile, urdfFile, referenceFile);
 
-  // Gait receiver
-  auto gaitReceiverPtr =
-      std::make_shared<GaitReceiver>(nodeHandle, interface.getSwitchedModelReferenceManagerPtr()->getGaitSchedule(), robotName);
+  // // Gait receiver
+  // auto gaitReceiverPtr =
+  //     std::make_shared<GaitReceiver>(nodeHandle, interface.getSwitchedModelReferenceManagerPtr()->getGaitSchedule(), robotName);
 
-  // ROS ReferenceManager
-  auto rosReferenceManagerPtr = std::make_shared<RosReferenceManager>(robotName, interface.getReferenceManagerPtr());
-  rosReferenceManagerPtr->subscribe(nodeHandle);
+  // // ROS ReferenceManager
+  // auto rosReferenceManagerPtr = std::make_shared<RosReferenceManager>(robotName, interface.getReferenceManagerPtr());
+  // rosReferenceManagerPtr->subscribe(nodeHandle);
 
   // MPC
-  GaussNewtonDDP_MPC mpc(interface.mpcSettings(), interface.ddpSettings(), interface.getRollout(), interface.getOptimalControlProblem(),
-                         interface.getInitializer());
-  mpc.getSolverPtr()->setReferenceManager(rosReferenceManagerPtr);
-  mpc.getSolverPtr()->addSynchronizedModule(gaitReceiverPtr);
+  // GaussNewtonDDP_MPC mpc(interface.mpcSettings(), interface.ddpSettings(), interface.getRollout(), interface.getOptimalControlProblem(),
+  //                        interface.getInitializer());
+  // mpc.getSolverPtr()->setReferenceManager(rosReferenceManagerPtr);
+  // mpc.getSolverPtr()->addSynchronizedModule(gaitReceiverPtr);
 
-  // observer for zero velocity constraints (only add this for debugging as it slows down the solver)
-  if (multiplot) {
-    auto createStateInputBoundsObserver = [&](const std::string& termName) {
-      const ocs2::scalar_array_t observingTimePoints{0.0};
-      const std::vector<std::string> topicNames{"metrics/" + termName + "/0MsLookAhead"};
-      auto callback = ocs2::ros::createConstraintCallback(nodeHandle, {0.0}, topicNames,
-                                                          ocs2::ros::CallbackInterpolationStrategy::linear_interpolation);
-      return ocs2::SolverObserver::ConstraintTermObserver(ocs2::SolverObserver::Type::Intermediate, termName, std::move(callback));
-    };
-    for (size_t i = 0; i < interface.getCentroidalModelInfo().numThreeDofContacts; i++) {
-      const std::string& footName = interface.modelSettings().contactNames3DoF[i];
-      mpc.getSolverPtr()->addSolverObserver(createStateInputBoundsObserver(footName + "_zeroVelocity"));
-    }
-  }
+  // // observer for zero velocity constraints (only add this for debugging as it slows down the solver)
+  // if (multiplot) {
+  //   auto createStateInputBoundsObserver = [&](const std::string& termName) {
+  //     const ocs2::scalar_array_t observingTimePoints{0.0};
+  //     const std::vector<std::string> topicNames{"metrics/" + termName + "/0MsLookAhead"};
+  //     auto callback = ocs2::ros::createConstraintCallback(nodeHandle, {0.0}, topicNames,
+  //                                                         ocs2::ros::CallbackInterpolationStrategy::linear_interpolation);
+  //     return ocs2::SolverObserver::ConstraintTermObserver(ocs2::SolverObserver::Type::Intermediate, termName, std::move(callback));
+  //   };
+  //   for (size_t i = 0; i < interface.getCentroidalModelInfo().numThreeDofContacts; i++) {
+  //     const std::string& footName = interface.modelSettings().contactNames3DoF[i];
+  //     mpc.getSolverPtr()->addSolverObserver(createStateInputBoundsObserver(footName + "_zeroVelocity"));
+  //   }
+  // }
 
-  // Launch MPC ROS node
-  MPC_ROS_Interface mpcNode(mpc, robotName);
-  mpcNode.launchNodes(nodeHandle);
+  // // Launch MPC ROS node
+  // MPC_ROS_Interface mpcNode(mpc, robotName);
+  // mpcNode.launchNodes(nodeHandle);
 
   // Successful exit
   return 0;

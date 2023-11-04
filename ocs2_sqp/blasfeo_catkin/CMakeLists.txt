@@ -20,9 +20,11 @@ file(MAKE_DIRECTORY ${BLASFEO_BUILD_DIR})
 
 # BLASFEO Settings
 set(BUILD_SHARED_LIBS ON CACHE STRING "Build shared libraries" FORCE)
-set(TARGET ARMV8A_ARM_CORTEX_A53 CACHE STRING "Target architecture" FORCE)
+set(TARGET ARMV8A_ARM_CORTEX_A57 CACHE STRING "Target architecture" FORCE)
+# set(TARGET_ARMV8A_ARM_CORTEX_A57 TRUE CACHE STRING "Target architecture add" FORCE)
 set(BLASFEO_EXAMPLES OFF CACHE BOOL "Examples enabled")
 
+message(TARGET_IS="${TARGET}")
 # Download & build source
 FetchContent_Declare(blasfeoDownload
 	GIT_REPOSITORY https://github.com/MRSD-Darkbot/blasfeo
