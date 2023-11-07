@@ -64,7 +64,7 @@ class GaitKeyboardPublisher {
 
   gaitMap_.clear();
   for (const auto& gaitName : gaitList_) {
-  //   gaitMap_.insert({gaitName, loadModeSequenceTemplate(gaitFile, gaitName, verbose)});
+     gaitMap_.insert({gaitName, loadModeSequenceTemplate(gaitFile, gaitName, verbose)});
   }
   ROS_INFO_STREAM(robotName + "_mpc_mode_schedule command node is ready.");
   }

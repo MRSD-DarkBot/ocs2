@@ -24,7 +24,7 @@ set(TARGET ARMV8A_ARM_CORTEX_A57 CACHE STRING "Target architecture" FORCE)
 # set(TARGET_ARMV8A_ARM_CORTEX_A57 TRUE CACHE STRING "Target architecture add" FORCE)
 set(BLASFEO_EXAMPLES OFF CACHE BOOL "Examples enabled")
 
-message(TARGET_IS="${TARGET}")
+message(TARGET_ISS="${TARGET}")
 # Download & build source
 FetchContent_Declare(blasfeoDownload
 	GIT_REPOSITORY https://github.com/MRSD-Darkbot/blasfeo
